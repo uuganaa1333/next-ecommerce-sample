@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 
 const ProductList = async () => {
-  let data = await fetch('https://fakestoreapi.com/products');
+  let data = await fetch(`${process.env.API_URL}/products`);
   let products = await data.json();
 
   return (
