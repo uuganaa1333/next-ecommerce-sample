@@ -5,12 +5,16 @@ import { Categories } from './Categories';
 const Header = ({ title }) => {
   return (
     <header>
-      <nav>
-        <Link className="mx-4 text-slate-700" href="/">
+      <nav className="flex justify-center my-5">
+        <Link className="mx-3 text-slate-700" href="/">
           {title}
         </Link>
-        <Link href="/about">About</Link>
-        <Link href="/products">Products</Link>
+        <Link className="mx-3 text-slate-700" href="/about">
+          About
+        </Link>
+        <Link className="mx-3 text-slate-700" href="/products">
+          Products
+        </Link>
         <Categories />
       </nav>
     </header>
