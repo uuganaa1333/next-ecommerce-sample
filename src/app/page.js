@@ -1,4 +1,10 @@
-import ProductList from '@/components/ProductList';
+import ProductList from '../components/ProductList';
+
+export const metadata = {
+  title: 'Clothes',
+  description: 'description',
+};
+
 export default function Home() {
   return (
     <>

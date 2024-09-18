@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+
 const page = async ({ params: { slug } }) => {
   let data = await fetch(`https://fakestoreapi.com/products/category/${slug}`);
   let products = await data.json();

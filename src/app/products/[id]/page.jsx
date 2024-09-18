@@ -1,5 +1,19 @@
 import Image from 'next/image';
 import React from 'react';
+import RelatedProducts from '../../../components/RelatedProducts';
+
+export async function generateMetadata({ params: { id } }) {
+  let data = await fetch(`https://fakestoreapi.com/products/${id}`);
+  let product = await data.json();
+
+  return {
+    title: product.title,
+    description: product.description,
+    openGraph: {
+      images: [product.image],
+    },
+  };
+}
 
 const page = async ({ params: { id } }) => {
   let data = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -33,6 +47,7 @@ const page = async ({ params: { id } }) => {
           </div>
         </div>
       </div>
+      <RelatedProducts category={product.category} />
     </div>
   );
 };
