@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import RelatedProducts from '../../../components/RelatedProducts';
+import AddToCart from '../../../components/AddToCart';
 
 export async function generateMetadata({ params: { id } }) {
   let data = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -19,6 +20,7 @@ const page = async ({ params: { id } }) => {
   let data = await fetch(`https://fakestoreapi.com/products/${id}`);
   let product = await data.json();
   const ratingWidth = (100 * product.rating.rate) / 5;
+
   return (
     <div className="mx-auto my-10 max-w-3xl">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -42,7 +44,7 @@ const page = async ({ params: { id } }) => {
             <div style={{ width: ratingWidth + '%' }} className={`h-3 bg-yellow-200`}></div>
           </div>
           <div className="grid grid-cols-2 gap-3 my-6">
-            <button className=" bg-blue-500 text-white rounded-md py-3">Add to cart</button>
+            <AddToCart id={product.id} />
             <button className=" bg-slate-900 text-white rounded-md py-3">Purchase</button>
           </div>
         </div>

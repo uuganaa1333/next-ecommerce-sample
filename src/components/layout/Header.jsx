@@ -1,8 +1,12 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Categories } from './Categories';
+import Image from 'next/image';
+import Cart from '../Cart';
 const Header = ({ title }) => {
+  const [show, setShow] = useState(false);
+
   return (
     <header>
       <nav className="flex justify-center my-5">
@@ -16,7 +20,15 @@ const Header = ({ title }) => {
           Products
         </Link>
         <Categories />
+        <button onClick={() => setShow(!show)}>
+          <Image src={'/cart.svg'} width={18} height={18} alt="cart" />
+        </button>
       </nav>
+      <div className="cart fixed z-20 top-0 h-screen w-[250px] bg-slate-300 duration-300 p-10 shadow-md" style={{ right: show ? '0px' : '-250px' }}>
+        <button onClick={() => setShow(!show)}>X</button>
+        <h3>Your cart:</h3>
+        <Cart />
+      </div>
     </header>
   );
 };
