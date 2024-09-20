@@ -6,7 +6,7 @@ const AddToCart = ({ product }) => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart'));
+    const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
     setCart(shoppingCart);
   }, [setCart]);
 
