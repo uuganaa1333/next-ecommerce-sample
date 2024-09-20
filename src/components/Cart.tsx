@@ -3,19 +3,19 @@
 import React, { useEffect, useState } from 'react';
 import ProductItem from './ProductItem';
 const Cart = () => {
-  const [cart, setCart] = useState(null);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    async function fetchCart() {
-      let res = await fetch(`https://fakestoreapi.com/carts/5`);
-      let data = await res.json();
-      setCart(data);
-    }
-    fetchCart();
-  }, []);
+    const cartItems = JSON.parse(localStorage.getItem('shoppingCart'));
+    setCart(cartItems);
+  }, [setCart]);
+
   return (
     <div>
-      {cart && cart.products.map((product) => <ProductItem key={product.productId} productId={product.productId} quantity={product.quantity} />)}
+      <div className="h-[500px] overflow-scroll">
+        {cart?.length > 0 ? cart.map((product) => <ProductItem key={product.id} product={product} />) : <p>Your cart is empty</p>}
+      </div>
+      <button className=" text-red-900">Clear cart</button>
     </div>
   );
 };

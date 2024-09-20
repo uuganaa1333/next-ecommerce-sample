@@ -1,27 +1,23 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const AddToCart = ({ id }) => {
-  const addNewCart = (id) => {
-    console.log('works');
-    fetch('https://fakestoreapi.com/carts/7', {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        userId: 3,
-        date: '2019-12-10', // Corrected date format
-        products: [{ productId: id, quantity: 3 }],
-      }),
-    })
-      .then((res) => res.json())
-      .then((json) => console.log(json))
-      .catch((error) => console.error('Error:', error)); // Added error handling
+const AddToCart = ({ product }) => {
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart'));
+    setCart(shoppingCart);
+  }, [setCart]);
+
+  const addToCart = (product) => {
+    const updatedCart = [...cart, product];
+    localStorage.setItem('shoppingCart', JSON.stringify(updatedCart));
+    setCart(updatedCart);
   };
+
   return (
-    <button className=" bg-blue-500 text-white rounded-md py-3" onClick={() => addNewCart(id)}>
+    <button className=" bg-blue-500 text-white rounded-md py-3" onClick={() => addToCart(product)}>
       Add to cart
     </button>
   );

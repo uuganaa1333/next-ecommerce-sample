@@ -2,17 +2,7 @@
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 
-const ProductItem = ({ productId, quantity }) => {
-  const [product, setProduct] = useState(null);
-
-  useEffect(() => {
-    async function fetchProduct() {
-      let res = await fetch(`https://fakestoreapi.com/products/${productId}`);
-      let data = await res.json();
-      setProduct(data);
-    }
-    fetchProduct();
-  }, [productId]);
+const ProductItem = ({ product }) => {
   if (!product) return null;
   return (
     <div className="mb-5">
@@ -24,7 +14,10 @@ const ProductItem = ({ productId, quantity }) => {
           <h6 className=" text-sm">{product.title}</h6>
         </div>
       </div>
-      <div>Quantity: {quantity}</div>
+      <div className="flex justify-between">
+        <div>Quantity: {product.rating.count}</div>
+        <button className="text-red-800">Delete</button>
+      </div>
     </div>
   );
 };

@@ -44,7 +44,7 @@ const page = async ({ params: { id } }) => {
             <div style={{ width: ratingWidth + '%' }} className={`h-3 bg-yellow-200`}></div>
           </div>
           <div className="grid grid-cols-2 gap-3 my-6">
-            <AddToCart id={product.id} />
+            <AddToCart product={product} />
             <button className=" bg-slate-900 text-white rounded-md py-3">Purchase</button>
           </div>
         </div>
