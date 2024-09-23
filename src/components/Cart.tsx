@@ -1,15 +1,12 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ProductItem from './ProductItem';
+import { ShoppingCartContext } from '../lib/ShoppingCartContext';
 const Cart = () => {
-  const [cart, setCart] = useState([]);
+  const { cart, removeFromCart } = useContext(ShoppingCartContext);
 
-  useEffect(() => {
-    const cartItems = JSON.parse(localStorage.getItem('shoppingCart'));
-    setCart(cartItems);
-  }, [setCart]);
-
+  console.log(cart, 'cart');
   return (
     <div>
       <div className="h-[500px] overflow-scroll">

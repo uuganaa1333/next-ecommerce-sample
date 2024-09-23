@@ -1,16 +1,14 @@
-import ProductList from '../components/ProductList';
+import Home from '../components/Home';
 
 export const metadata = {
   title: 'Clothes',
   description: 'description',
 };
 
-export default function Home() {
+export default function index() {
   return (
     <>
-      <div className="mx-auto p-6">
-        <ProductList />
-      </div>
+      <Home />
     </>
   );
 }
